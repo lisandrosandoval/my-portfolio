@@ -245,84 +245,65 @@
 <script>
     import emailjs from '@emailjs/browser';
 
-    // Tus credenciales del .env
     const serviceID = import.meta.env.PUBLIC_EMAILJS_SERVICE_ID;
     const templateID = import.meta.env.PUBLIC_EMAILJS_TEMPLATE_ID;
     const publicKey = import.meta.env.PUBLIC_EMAILJS_PUBLIC_KEY;
 
+    emailjs.init(publicKey);
+
     const form = document.getElementById('contact-form') as HTMLFormElement;
     const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
 
-	
+    if (form && submitBtn) {
+        
+        const validarFormulario = () => {
+            const esValido = form.checkValidity();
+            submitBtn.disabled = !esValido;
 
-    if (form) {
+            if (esValido) {
+                submitBtn.classList.remove('opacity-50', 'hover:cursor-not-allowed');
+                submitBtn.classList.add('hover:cursor-pointer');
+            } else {
+                submitBtn.classList.add('opacity-50', 'hover:cursor-not-allowed');
+                submitBtn.classList.remove('hover:cursor-pointer');
+            }
+        };
 
-		form.addEventListener('input', () => {
-			const esValido = form.checkValidity();
+        validarFormulario();
 
-			submitBtn.disabled = !esValido;
-
-			if (!submitBtn.disabled) {
-				submitBtn.classList.remove('opacity-50', 'hover:cursor-not-allowed');
-				submitBtn.classList.add('hover:cursor-pointer');
-			} else {
-				submitBtn.classList.add('opacity-50', 'hover:cursor-not-allowed');
-				submitBtn.classList.remove('hover:cursor-pointer');
-			}
-		})
+        form.addEventListener('input', validarFormulario);
 
         form.addEventListener('submit', (e) => {
             e.preventDefault();
-			let texts = {
-				original: "Enviar",
-				sending: "Enviando...",
-				success: "¡Enviado!",
-				error: "Error"
-			}
 
-			if (form && submitBtn) {
-				texts = {
-					original: submitBtn.dataset.original || "Enviar",
-					sending: submitBtn.dataset.sending || "Enviando...",
-					success: submitBtn.dataset.success || "¡Enviado!",
-					error: submitBtn.dataset.error || "Error"
-				};
-			}
+            const texts = {
+                original: submitBtn.dataset.original || "Enviar",
+                sending: submitBtn.dataset.sending || "Enviando...",
+                success: submitBtn.dataset.success || "¡Enviado!",
+                error: submitBtn.dataset.error || "Error"
+            };
 
-            // UI: Desactivar botón y mostrar "Enviando..."
-            if (submitBtn) {
-				submitBtn.disabled = true
-				submitBtn.textContent = `${texts.sending}`;
-			}
+            submitBtn.disabled = true;
+            submitBtn.textContent = texts.sending;
 
-            emailjs.sendForm(serviceID, templateID, form, publicKey)
+            emailjs.sendForm(serviceID, templateID, form)
                 .then(() => {
-                    // ÉXITO
-                    if (submitBtn) {
-                        submitBtn.textContent = `${texts.success}`;
-                        submitBtn.classList.add('ring ring-green-500 text-green-500');
-                    }
+                    submitBtn.textContent = texts.success;
+                    submitBtn.classList.add('ring', 'ring-green-500', 'text-green-500');
                     form.reset();
-                }, (err) => {
-                    // ERROR
+                    validarFormulario();
+                })
+                .catch((err) => {
                     console.error('FAILED...', err);
-                    if (submitBtn) {
-                        submitBtn.textContent = `${texts.error}`;
-                        submitBtn.classList.add('ring ring-red-500 text-red-500');
-                    }
+                    submitBtn.textContent = texts.error;
+                    submitBtn.classList.add('ring', 'ring-red-500', 'text-red-500');
                 })
                 .finally(() => {
-                    // Reactivar botón
-                    if (submitBtn) submitBtn.disabled = false;
-                    // Opcional: Ocultar mensaje de éxito después de 5 segundos
                     setTimeout(() => {
-                         if (submitBtn && submitBtn.classList.contains('text-green-500')) {
-                             submitBtn.textContent = `${texts.original}`;
-							 submitBtn.classList.remove('ring', 'ring-green-500', 'text-green-500');
-						 } else if (submitBtn && submitBtn.classList.contains('text-red-500')) {
-							 submitBtn.textContent = `${texts.original}`;
-							 submitBtn.classList.remove('ring', 'ring-red-500', 'text-red-500');
-                         }
+                        submitBtn.textContent = texts.original;
+                        submitBtn.classList.remove('ring', 'ring-green-500', 'text-green-500', 'ring-red-500', 'text-red-500');
+                        
+                        validarFormulario();
                     }, 4000);
                 });
         });

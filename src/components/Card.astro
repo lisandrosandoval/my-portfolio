@@ -1,0 +1,13 @@
+---
+interface Props {
+    title: string;
+    className?: string;
+    containerClassName?: string;
+}
+const {title , className, containerClassName} = Astro.props;
+---
+
+<div class={"flex flex-col justify-center items-center gap-2 p-4 w-auto h-auto rounded-lg border border-(--dusty-blue) hover:border-(--ivory) hover:shadow-(--midnight-blue) transition-all duration-300 " + containerClassName}>
+    <slot/>
+    <p class={"text-center " + className}>{title}</p>
+</div>

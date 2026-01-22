@@ -1,0 +1,316 @@
+---
+	import { useTranslations } from '../i118n/utils.ts';
+	import Layout from '../layouts/Layout.astro';
+	import Card from '../components/Card.astro';
+	import AstroIcon from '../components/icons/astroIcon.astro';
+	import ArrowDown from '../components/icons/arrowDown.astro';
+	import Mongo from '../components/icons/mongo.astro';
+	import React from '../components/icons/react.astro';
+	import Java from '../components/icons/java.astro';
+	import Js from '../components/icons/js.astro';
+	import Cpp from '../components/icons/cpp.astro';
+	import ElasticSearch from '../components/icons/elasticsearch.astro';
+	import Cassandra from '../components/icons/cassandra.astro';
+	import Ts from '../components/icons/ts.astro';
+	import PostgreSQL from '../components/icons/postgresql.astro';
+	import Git from '../components/icons/git.astro';
+	import Html from '../components/icons/html.astro';
+	import Nextjs from '../components/icons/nextjs.astro';
+	import Css from '../components/icons/css.astro';
+	import Nodejs from '../components/icons/nodejs.astro';
+	import Express from '../components/icons/express.astro';
+	import Prisma from '../components/icons/prisma.astro';
+	import Tailwind from '../components/icons/tailwind.astro';
+	import Python from '../components/icons/python.astro';
+	import ProjectCard from '../components/ProjectCard.astro';
+
+	const lang = Astro.currentLocale as 'es' | 'en' || 'es';
+	const t = useTranslations(lang);
+
+
+	const formTexts = {
+		sending: t('contact.sending'),
+		success: t('contact.success'),
+		error: t('contact.error'),
+		original: t('contact.button')
+	}
+
+	const tecnologias = [
+	{
+	name: 'Html',
+	icon: Html,
+	level: 'proficient',
+	},
+	{
+	name: 'CSS',
+	icon: Css,
+	level: 'proficient',
+	},
+	{
+	name: 'JavaScript',
+	icon: Js,
+	level: 'proficient',
+	},
+	{
+	name: 'TypeScript',
+	icon: Ts,
+	level: 'proficient',
+	},
+	{
+	name: 'React',
+	icon: React,
+	level: 'proficient',
+	},
+	{
+	name: 'Tailwind',
+	icon: Tailwind,
+	level: 'proficient',
+	},
+	{
+	name: 'Next.js',
+	icon: Nextjs,
+	level: 'proficient',
+	},
+	{
+	name: 'Node.js',
+	icon: Nodejs,
+	level: 'proficient',
+	},
+	{
+	name: 'Express',
+	icon: Express,
+	level: 'proficient',
+	},
+	{
+	name: 'PostgreSQL',
+	icon: PostgreSQL,
+	level: 'proficient',
+	},
+	{
+	name: 'Prisma',
+	icon: Prisma,
+	level: 'proficient',
+	},
+	{
+	name: 'Java',
+	icon: Java,
+	level: 'proficient',
+	},
+	{
+	name: 'Git',
+	icon: Git,
+	level: 'proficient',
+	},
+	{
+	name: 'MongoDB',
+	icon: Mongo,
+	level: 'familiar',
+	},
+	{
+	name: 'Astro',
+	icon: AstroIcon,
+	level: 'familiar',
+	},
+	{
+	name: 'Python',
+	icon: Python,
+	level: 'familiar',
+	},
+	{
+	name: 'C++',
+	icon: Cpp,
+	level: 'familiar',
+	},
+	{
+	name: 'Elasticsearch',
+	icon: ElasticSearch,
+	level: 'basic',
+	},
+	{
+	name: 'Cassandra',
+	icon: Cassandra,
+	level: 'basic',
+	}
+	]
+---
+
+	<Layout>
+		<section id="hero" class="min-h-screen flex flex-col items-center justify-center">
+
+			<div class="flex-1 flex items-center justify-center">
+				<div class="flex flex-col justify-center w-2xl h-52 p-8 bg-slate-200 dark:bg-(--midnight-blue) rounded-4xl border border-(--dusty-blue)">
+					<div class="flex items-center">
+						<h1 class="text-6xl dark:text-(--ivory) text-(--midnight-blue)">Lisandro Sandoval</h1>
+						<div class="flex flex-1 justify-center items-center">
+							<div class="rounded-[50%] bg-(--deep-navy) size-25 shadow-lg shadow-black/50">
+								<img src="/avatar.png" alt="Avatar" class="rounded-b-[50%]"/>
+							</div>
+						</div>
+					</div>
+					<p class="text-xl mt-3" set:html={t('hero.full_subtitle')}/>
+				</div>
+			</div>
+
+			<div  class="pb-8 hover:scale-110 dark:hover:*:text-slate-50 hover:*:text-(--midnight-blue) transition-transform *:transition-colors duration-300">
+				<div class="flex flex-col items-center gap-1 text-(--dusty-blue)">
+					<p>{t('more.info')}</p>
+					<ArrowDown size={24} />
+				</div>
+			</div>
+			
+
+				
+		</section>
+
+		<section id="about" class="flex flex-col items-center gap-8 scroll-mt-50">
+
+			<div class="w-3xl dark:hover:bg-(--midnight-blue) hover:bg-slate-200 hover:scale-105 p-4 hover:rounded-2xl transition-transform duration-500">
+				<p class="text-justify border-l-2 border-(--dusty-blue) pl-2" set:html={t('info.p1')} />
+			</div>
+
+			<div class="w-3xl dark:hover:bg-(--midnight-blue) hover:bg-slate-200 hover:scale-105 p-4 hover:rounded-2xl transition-transform duration-500">
+				<p class="text-justify border-l-2 border-(--dusty-blue) pl-2" set:html={t('info.p2')} />
+			</div>
+
+			<div class="w-3xl dark:hover:bg-(--midnight-blue) hover:bg-slate-200 hover:scale-105 p-4 hover:rounded-2xl transition-transform duration-500">
+				<p class="text-justify border-l-2 border-(--dusty-blue) pl-2" set:html={t('info.p3')} />
+				</p>
+			</div>
+		</section>
+
+		<section id="skills" class="flex flex-col justify-center items-center">
+			<h2 class="text-2xl mt-10">{t('skills.title')}</h2>
+			<div class="flex flex-col justify-center items-center">
+
+				<div class="grid grid-cols-5 w-2xl gap-4 mt-10 border border-(--dusty-blue) rounded-lg p-6">
+					{tecnologias.map((tech) => (
+						<Card 
+							title={tech.name} 
+							className="text-current" 
+							containerClassName={
+								tech.level === 'proficient' ? "border-green-500! hover:bg-green-900/30!" :
+								tech.level === 'familiar' ? "border-orange-500! hover:bg-orange-900/30!" :
+								"border-yellow-500! hover:bg-yellow-900/30!"
+							}
+						>
+							<tech.icon size={48} class="text-current" />
+						</Card>
+					))}
+					<div class="col-span-5 flex gap-4 justify-between px-8 border border-(--dusty-blue) rounded-lg py-4">
+						<div class="flex gap-1 items-center">	
+							<div class="size-3 rounded-[50%] bg-green-500"/> <p>{t('skills.green')}</p>
+						</div>
+
+						<div class="flex gap-1 items-center">	
+							<div class="size-3 rounded-[50%] bg-orange-500"/> <p>{t('skills.orange')}</p>
+						</div>
+
+						<div class="flex gap-1 items-center">	
+							<div class="size-3 rounded-[50%] bg-yellow-500"/> <p>{t('skills.yellow')}</p>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</section>
+
+		<section id="projects" class="flex flex-col justify-center items-center">
+			<h2 class="text-2xl mt-10">{t('projects.title')}</h2>
+			<div class="grid grid-cols-2 gap-4 max-w-3xl mt-10">
+				<ProjectCard imgSrc="/pos.png" altText="POS Preview" title={t('projects.pos.title')} end="Fullstack" description={t('projects.pos.description')} stack={['PostgreSQL', 'Prisma', 'Node.js','Express', 'Typescript', 'Next.js', 'React', 'Tailwind']}/>
+
+				
+				<ProjectCard imgSrc="/hotel.png" altText="POS Preview" title={t('projects.hotel.title')} end="Frontend" description={t('projects.hotel.description')} stack={['Javascript', 'React', 'Next.js']}/>
+			</div>
+		</section>
+
+		<section id="contact" class="flex flex-col justify-center items-center">
+			<h2 class="text-2xl mt-10">{t('contact.title')}</h2>
+			<form id="contact-form" class="flex flex-col gap-4 mb-20 w-xl bg-slate-200 dark:bg-(--midnight-blue) border border-(--dusty-blue) p-6 rounded-lg mt-10">
+
+				<label for="name" class="px-1">{t('contact.name')}</label>
+				<input id="name" name="name" type="text" placeholder={t('contact.name.placeholder')} class="p-2 border dark:border-(--ivory) rounded-lg focus:ring-2  outline-none"/>
+				
+				<label for="email" class="px-1">E-mail</label>
+				<input id="email" name="email" type="email" placeholder={t('contact.email.placeholder')} class="p-2 border dark:border-(--ivory) rounded-lg focus:ring-2  outline-none"/>
+				
+				<label for="message" class="px-1">{t('contact.message')}</label>
+				<textarea id="message" name="message" placeholder={t('contact.message.example')} class="p-2 border dark:border-(--ivory) rounded-lg h-32 focus:ring-2  outline-none"></textarea>
+				
+				<button id="submit-btn" type="submit" class="p-2 dark:bg-(--deep-navy) bg-slate-300 rounded-lg hover:bg-slate-400 dark:hover:bg-(--dusty-blue) hover:cursor-pointer transition-colors duration-300" data-success = {formTexts.success} data-error={formTexts.error} data-sending={formTexts.sending} data-original={formTexts.original}>{t('contact.button')}</button>
+
+			</form>
+		</section>
+
+<script>
+    import emailjs from '@emailjs/browser';
+
+    // Tus credenciales del .env
+    const serviceID = import.meta.env.PUBLIC_EMAILJS_SERVICE_ID;
+    const templateID = import.meta.env.PUBLIC_EMAILJS_TEMPLATE_ID;
+    const publicKey = import.meta.env.PUBLIC_EMAILJS_PUBLIC_KEY;
+
+    const form = document.getElementById('contact-form') as HTMLFormElement;
+    const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+
+    if (form) {
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+			let texts = {
+				original: "Enviar",
+				sending: "Enviando...",
+				success: "¡Enviado!",
+				error: "Error"
+			};
+
+			if (form && submitBtn) {
+				texts = {
+					original: submitBtn.dataset.original || "Enviar",
+					sending: submitBtn.dataset.sending || "Enviando...",
+					success: submitBtn.dataset.success || "¡Enviado!",
+					error: submitBtn.dataset.error || "Error"
+				};
+			}
+
+            // UI: Desactivar botón y mostrar "Enviando..."
+            if (submitBtn) {
+				submitBtn.disabled = true
+				submitBtn.textContent = `${texts.sending}`;
+			}
+
+            emailjs.sendForm(serviceID, templateID, form, publicKey)
+                .then(() => {
+                    // ÉXITO
+                    if (submitBtn) {
+                        submitBtn.textContent = `${texts.success}`;
+                        submitBtn.classList.add('text-green-500');
+                    }
+                    form.reset();
+                }, (err) => {
+                    // ERROR
+                    console.error('FAILED...', err);
+                    if (submitBtn) {
+                        submitBtn.textContent = `${texts.error}`;
+                        submitBtn.classList.add('text-red-500');
+                    }
+                })
+                .finally(() => {
+                    // Reactivar botón
+                    if (submitBtn) submitBtn.disabled = false;
+                    // Opcional: Ocultar mensaje de éxito después de 5 segundos
+                    setTimeout(() => {
+                         if (submitBtn && submitBtn.classList.contains('text-green-500')) {
+                             submitBtn.textContent = `${texts.original}`;
+							 submitBtn.classList.remove('text-green-500');
+						 } else if (submitBtn && submitBtn.classList.contains('text-red-500')) {
+							 submitBtn.textContent = `${texts.original}`;
+							 submitBtn.classList.remove('text-red-500');
+                         }
+                    }, 4000);
+                });
+        });
+    }
+</script>
+		
+</Layout>
+

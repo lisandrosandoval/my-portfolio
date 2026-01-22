@@ -1,0 +1,50 @@
+@import "tailwindcss";
+@config "../../tailwind.config.mjs";
+
+@font-face {
+    font-family: "Coolvetica";
+    src: url("/fonts/CoolveticaRg.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+:root {
+    --deep-navy: #19202f;
+    --buttercream: #d0cec9;
+    --ivory: #bec3d2;
+    --dusty-blue: #59667d;
+    --midnight-blue: #27314a;
+    --font-family: 'Coolvetica', sans-serif;
+
+    --bg: var(--buttercream);
+    --text: var(--dusty-blue);
+}
+.dark {
+    --deep-navy: #19202f;
+    --buttercream: #d0cec9;
+    --ivory: #bec3d2;
+    --dusty-blue: #59667d;
+    --midnight-blue: #27314a;
+
+    --bg: var(--deep-navy);
+    --text: var(--buttercream);
+    --secondary: var(--midnight-blue);
+}
+html,
+body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-family);
+}
+html {
+    scroll-behavior: smooth; /* Para que el scroll sea suave */
+}
+
+section {
+    /* Esto le dice al navegador: "Cuando saltes a este ID, 
+        frená 100px antes para no chocar con el menú" */
+    scroll-margin-top: 100px;
+}

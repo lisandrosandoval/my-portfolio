@@ -40,9 +40,9 @@ const currentLangPath = lang === 'es' ? repoBase : `${repoBase}en/`;
 		<header class="bg-linear-to-b from-[#aeaca8] to-(--buttercream) dark:from-[#141925] dark:to-(--deep-navy) fixed z-50 w-full p-4">
 			<nav class="flex justify-between gap-4 flex-1 ">
 				<ul class="flex gap-2 dark:[&>li]:hover:text-slate-50 [&>li]:hover:text-(--midnight-blue)">
-					<li><a href={currentLangPath}>en</a></li>
+					<li><a href={`${repoBase}en/`}>en</a></li>
 					<p>	| </p>
-					<li><a href={currentLangPath}>es</a></li>
+					<li><a href={repoBase}>es</a></li>
 				</ul>
 
 				<ul class="flex gap-2 dark:[&>li]:hover:text-slate-50 [&>li]:hover:text-(--midnight-blue)">

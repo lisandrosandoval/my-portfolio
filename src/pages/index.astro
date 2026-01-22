@@ -228,13 +228,13 @@
 			<h2 class="text-2xl mt-10">{t('contact.title')}</h2>
 			<form id="contact-form" class="flex flex-col gap-4 mb-20 w-xl bg-slate-200 dark:bg-(--midnight-blue) border border-(--dusty-blue) p-6 rounded-lg mt-10">
 
-				<label for="name" class="px-1">{t('contact.name')}</label>
+				<label for="name" class="px-1">{t('contact.name')} *</label>
 				<input required id="name" name="name" type="text" placeholder={t('contact.name.placeholder')} class="p-2 border dark:border-(--ivory) rounded-lg focus:ring-2  outline-none"/>
 				
-				<label for="email" class="px-1">E-mail</label>
+				<label for="email" class="px-1">E-mail *</label>
 				<input required id="email" name="email" type="email" placeholder={t('contact.email.placeholder')} class="p-2 border dark:border-(--ivory) rounded-lg focus:ring-2  outline-none"/>
 				
-				<label for="message" class="px-1">{t('contact.message')}</label>
+				<label for="message" class="px-1">{t('contact.message')} *</label>
 				<textarea required id="message" name="message" placeholder={t('contact.message.example')} class="p-2 border dark:border-(--ivory) rounded-lg h-32 focus:ring-2  outline-none"></textarea>
 				
 				<button id="submit-btn" type="submit" disabled class="opacity-50 hover:cursor-not-allowed p-2 dark:bg-(--deep-navy) bg-slate-300 rounded-lg hover:bg-slate-400 dark:hover:bg-(--dusty-blue) transition-colors duration-300" data-success = {formTexts.success} data-error={formTexts.error} data-sending={formTexts.sending} data-original={formTexts.original}>{t('contact.button')}</button>
